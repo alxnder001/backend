@@ -1,4 +1,4 @@
-import * as bookController from ' ../services/bookService.js';
+import * as bookController from '../services/bookService.js';
 
 export const fetchAllBooks = async (req, res) => {
     const books = await bookController.fetchAllBooks();
