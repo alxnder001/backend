@@ -8,16 +8,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/alxnder001/backend.git"
+    "url": "git+https://github.com/markfran11/backend.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "module",
   "bugs": {
-    "url": "https://github.com/alxnder001/backend/issues"
+    "url": "https://github.com/markfran11/backend/issues"
   },
-  "homepage": "https://github.com/alxnder001/backend#readme",
+  "homepage": "https://github.com/markfran11/backend#readme",
   "dependencies": {
     "dotenv": "^18.0.6",
     "express": "^5.2.1",
