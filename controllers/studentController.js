@@ -5,6 +5,8 @@ export const fetchAllStudents = async (req, res) =>{
     res.status(200).json(student);
 }
 
+// Create
+
 export const createStudent = async (req, res) =>{
     console.log(req);
     const {name, srcode, program} = req.body;

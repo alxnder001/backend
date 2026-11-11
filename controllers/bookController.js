@@ -5,6 +5,8 @@ export const fetchAllBooks = async (req, res) =>{
     res.status(200).json(books);
 }
 
+// Create
+
 export const createBooks = async (req, res) =>{
     console.log(req);
     const {name, author} = req.body;

@@ -5,6 +5,7 @@ export const fetchAllStudents = async() =>{
     return student;
 };
 
+//insert
 export const createStudent = async(student) =>{
     const studentId = await studentModel.insert(student);
     return studentId;
@@ -15,7 +16,7 @@ export const updateStudent = async(student) =>{
     const updateStudent = await studentModel.update(student);
     return updatedStudent;
 }
-//update
+//delete
 export const deleteStudent = async (id) => {
     const deletedStudent = await studentModel.remove(id);
 

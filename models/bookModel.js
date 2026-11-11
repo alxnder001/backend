@@ -5,6 +5,15 @@ export const fetch = async () => {
     return rows;
 };
 
+//insert
+export const insert = async (book) => {
+    const [result] = await pool.query(
+        "INSERT INTO book (name, author) VALUES (?, ?)",
+        [book.name, book.author]
+    );
+    return result.insertId;
+};
+
 // Update 
 export const update = async (student) => {
     const [result] = await pool.query(
