@@ -1,49 +1,63 @@
-import * as bookModel from '../models/bookModel.js';
+import * as bookModels from '../models/bookModel.js';
 
-export const fetchAllBooks = async() =>{
-<<<<<<< HEAD
-    const books = await bookModel.fetch();
+export const fetchAllBooks = async() => {
+    const books = await bookModels.fetch();
     return books;
 }
 
-//insert
-export const createBook = async (book) => {
-    if (book.name) {
-        const bookId = await bookModel.insert(book);
-        return bookId;
+const doesbookExist = async(book) => {
+    let existing;
+    if(Object.hasOwn(book, "id")){
+        existing = await bookModels.findBookById(book.id);
+    }else{
+        existing = await bookModels.findBookByNameAndAuthor(book.name, book.author);
     }
-};
 
-//update
-export const updateStudent = async(student) =>{
-    const updateStudent = await studentModel.update(student);
-    return updatedStudent;
-}
-//delete
-export const deleteStudent = async (id) => {
-    const deletedStudent = await studentModel.remove(id);
-
-    return deletedStudent;
-=======
-    const books = bookModel.fetch();
-    return books;
+    if(existing.length > 0) {
+        return true;
+    }
+    
+    return false;
 }
 
-export const createBooks = async(book) =>{
-    const bookId = await bookModel.insert(book);
+export const createBook = async(book) =>{
+    if(!book.name || !book.author){
+        throw new Error ('Name and Author is required');       
+    }
+
+    const existing = await doesbookExist(book);
+
+    if(existing){
+        throw new Error ('Book already exist!');
+    }
+    const bookId = await bookModels.insert(book);
     return bookId;
-} 
-
-//update
-export const updateBooks = async(student) =>{
-    const updatedBooks = await bookModel.update(book);
-    return updatedBooks;
 }
 
-//dlelete
-export const deleteBooks = async (id) => {
-    const deletedBooks = await bookModel.remove(id);
+export const updateBook = async(book) =>{
+     if(!book.name || !book.author){
+        throw new Error ('Name and Author is required');       
+    }
 
-    return deletedBooks;
->>>>>>> 55d4533b9f13550b455d4c33c862f7dba92f0f1c
-};
+    const existing = await doesbookExist(book);
+
+    if(!existing){
+        throw new Error ('Book does not exist!');
+    }
+
+    const updatedBook = await bookModels.update(book);
+    return updatedBook;
+}
+
+export const deleteBook = async(id) =>{
+    const book = {id};
+
+    const existing = await doesbookExist(book);
+
+      if(!existing){
+        throw new Error ('Book does not exist!');
+    }
+    
+    const deletedBook = await bookModels.remove(id);
+    return deletedBook;
+}

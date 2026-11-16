@@ -1,11 +1,14 @@
 import * as studentController from '../controllers/studentController.js';
 import express from "express";
 
-const studentRoute = express.Router();
+const studentRoutes = express.Router();
 
-studentRoute.get('/', studentController.fetchAllStudents);
-studentRoute.post('/', studentController.createStudent);
-studentRoute.put('/:id',studentController.editStudent);
-studentRoute.delete('/:id', studentController.deleteStudent);
+studentRoutes.get('/', studentController.fetchAllStudents);
 
-export default studentRoute;
+studentRoutes.post('/', studentController.createStudents);
+
+studentRoutes.put('/:id', studentController.editStudents);
+
+studentRoutes.delete('/:id', studentController.deleteStudents);
+
+export default studentRoutes;
